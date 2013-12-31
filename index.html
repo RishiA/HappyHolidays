@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://tympanus.net/Development/Christmas3DBox/ -->
+<html lang="en" class=" js no-touch" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Happy Holidays</title>
+		<meta name="description" content="Happy Holidays">
+		<meta name="keywords" content="happy holidays, christmas">
+		<meta name="author" content="Rishi">
+		 
+		<link rel="stylesheet" type="text/css" href="./HH_files/demo.css">
+		<link rel="stylesheet" type="text/css" href="./HH_files/style.css">
+		<script src="./HH_files/modernizr.custom.41753.js"></script><style type="text/css"></style>
+	</head>
+	<body>
+		<div class="container">	
+			<div class="bx-tree">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div class="bx-light"></div>
+			</div>
+			<div class="bx-snow"></div>
+			<canvas id="snowfall" width="1418" height="736"></canvas>
+			
+			<div class="bx-perspective">
+				<div class="bx-ornaments">
+					<div class="bx-ball"></div>
+					<div class="bx-ball"></div>
+					<div class="bx-ball"></div>
+					<div class="bx-ball"></div>
+				</div>
+				<div id="giftbox" class="bx-gift bx-gift bx-showfront">
+					<div class="bx-front"></div>
+					<div class="bx-right"></div>
+					<div class="bx-top-right"></div>
+					<div class="bx-top-left"></div>
+					<div class="bx-left"></div>
+					<div class="bx-back"></div>
+					<div class="bx-bottom"></div>
+				</div>
+				<div id="bx-grid" class="bx-grid">
+					<span style="-webkit-transition: 106ms;">!</span>
+					<span style="-webkit-transition: 220ms;">!</span>
+					<span style="-webkit-transition: 210ms;">H</span>
+					<span style="-webkit-transition: 92ms;">A</span>
+					<span style="-webkit-transition: 150ms;">P</span>
+					<span style="-webkit-transition: 132ms;">P</span>
+					<span style="-webkit-transition: 45ms;">Y</span>
+					<span style="-webkit-transition: 195ms;">!</span>
+					<span style="-webkit-transition: 220ms;">!</span>
+					<span style="-webkit-transition: 170ms;">H</span>
+					<span style="-webkit-transition: 227ms;">O</span>
+					<span style="-webkit-transition: 139ms;">L</span>
+					<span style="-webkit-transition: 14ms;">I</span>
+					<span style="-webkit-transition: 48ms;">D</span>
+					<span style="-webkit-transition: 94ms;">A</span>
+					<span style="-webkit-transition: 8ms;">Y</span>
+					<span style="-webkit-transition: 183ms;">S</span>
+					<span style="-webkit-transition: 158ms;">!</span>
+				</div>
+			</div>
+		</div><!-- /container -->
+		<script src="./HH_files/jquery.min.js"></script>
+		<script src="./HH_files/rectangleEmitter.js"></script>
+		<script src="./HH_files/snow.js"></script>
+		<script>
+
+			var Page = (function() {
+
+				function init() {
+
+					$( '#bx-grid > span').each( function( i ) {
+						$( this ).css( 'transition-delay', Math.floor( Math.random() * 250 ) + 'ms' );
+					} );
+
+					$( '#giftbox' ).on( 'click', function() {
+						$( this ).addClass('bx-open');
+					} );
+
+					letitsnow();
+
+				}
+
+				function letitsnow() {
+
+					// https://github.com/daveWid/canvas-snow
+					var canvas = document.getElementById("snowfall");
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
+					// Now the emitter
+					var emitter = Object.create(rectangleEmitter);
+					emitter.setCanvas(canvas);
+					emitter.setBlastZone(0, -10, canvas.width, 1);
+					emitter.particle = snow;
+					emitter.runAhead(60);
+					emitter.start(100);
+
+				}
+
+				return { init : init };
+
+			})();
+
+			$(function() {
+
+				Page.init();
+
+			});
+		</script>
+	
+
+</body></html>
